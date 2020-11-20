@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ngabolang/screens/authentication/login_page.dart';
+import 'package:ngabolang/screens/authentication/register_page.dart';
 import 'package:ngabolang/screens/welcome/get_started_screen.dart';
+import 'package:ngabolang/screens/welcome/welcome_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,8 +21,16 @@ class MyApp extends StatelessWidget {
           page: () => GetStartedPage(),
         ),
         GetPage(
+          name: WelcomePage.id,
+          page: () => WelcomePage(),
+        ),
+        GetPage(
           name: LoginPage.id,
           page: () => LoginPage(),
+        ),
+        GetPage(
+          name: RegisterPage.id,
+          page: () => RegisterPage(),
         ),
       ],
     );
