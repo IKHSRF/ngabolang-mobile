@@ -28,7 +28,18 @@ class LoginPage extends StatelessWidget {
             children: [
               Headline(
                 screenSize: screenSize,
-                buttonTap: () {},
+                buttonTap: () async {
+                  String result = await AuthServices.signInwitgGoogle();
+                  if (result != 'berhasil') {
+                    Get.snackbar(
+                      'oops something went wrong',
+                      result,
+                      colorText: Colors.white,
+                      backgroundColor: Colors.red,
+                    );
+                  }
+                  Get.offAllNamed(HomePage.id);
+                },
                 textHeadline: 'Log In',
                 buttonText: 'Login With Google',
               ),
@@ -58,8 +69,9 @@ class LoginPage extends StatelessWidget {
                         colorText: Colors.white,
                         backgroundColor: Colors.red,
                       );
+                    } else {
+                      Get.offAllNamed(HomePage.id);
                     }
-                    Get.offAllNamed(HomePage.id);
                   }
                 },
               ),
