@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ngabolang/screens/authentication/login_page.dart';
 import 'package:ngabolang/screens/authentication/register_page.dart';
 import 'package:ngabolang/screens/home/home_page.dart';
+import 'package:ngabolang/screens/maps/maps_screen.dart';
 import 'package:ngabolang/screens/welcome/get_started_screen.dart';
 import 'package:ngabolang/screens/welcome/welcome_screen.dart';
 
@@ -39,6 +40,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: HomePage.id,
           page: () => HomePage(),
+        ),
+        GetPage(
+          name: MapsScreen.id,
+          page: () => MapsScreen(),
         ),
       ],
     );
