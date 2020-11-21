@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ngabolang/screens/home/home_page.dart';
+import 'package:ngabolang/services/field_validator.dart';
+import 'package:ngabolang/services/firebase_auth.dart';
 import 'package:ngabolang/widgets/headline.dart';
 import 'local_widget/button_to_register.dart';
 import 'local_widget/login_field.dart';
@@ -13,6 +16,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
+    String emailValidate = Validator.emailValidate(emailController.text.trim());
+    String passwordValidate = Validator.passwordValidate(passwordController.text.trim());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -32,9 +37,30 @@ class LoginPage extends StatelessWidget {
                 screenSize: screenSize,
                 emailController: emailController,
                 passwordController: passwordController,
-                buttonTap: () {
-                  print(emailController.text);
-                  print(passwordController.text);
+                buttonTap: () async {
+                  //if the email and password is wrong, return snackbar with error
+                  if (emailValidate != null && passwordValidate != null) {
+                    Get.snackbar('Incorrect email or password', 'please fill in the fields correctly', backgroundColor: Colors.red, colorText: Colors.white);
+                    //if the email is wrong, return snackbar with error
+                  } else if (emailValidate != null) {
+                    Get.snackbar('Incorrect email or password', emailValidate, backgroundColor: Colors.red, colorText: Colors.white);
+                    //if the password is wrong, return snackbar with error
+                  } else if (passwordValidate != null) {
+                    Get.snackbar('Incorrect email or password', passwordValidate, backgroundColor: Colors.red, colorText: Colors.white);
+                  }
+                  //if the email and password is right, return snackbar with success
+                  else {
+                    String result = await AuthServices.loginWithEmailandPassword(emailController.text, passwordController.text);
+                    if (result != 'berhasil') {
+                      Get.snackbar(
+                        'oops something went wrong',
+                        result,
+                        colorText: Colors.white,
+                        backgroundColor: Colors.red,
+                      );
+                    }
+                    Get.offAllNamed(HomePage.id);
+                  }
                 },
               ),
               SizedBox(height: screenSize.height / 6),

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "205657255677",
+    "firebase_url": "https://ngabolang.firebaseio.com",
+    "project_id": "ngabolang",
+    "storage_bucket": "ngabolang.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205657255677:android:24343b5f17f167ed28d894",
+        "android_client_info": {
+          "package_name": "com.example.ngabolang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205657255677-itklnqeh0n8sc2t9i0hr9oerram7urvq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ngabolang",
+            "certificate_hash": "8689b27b8b0e0f419b0a0c783095f268130e7f4b"
+          }
+        },
+        {
+          "client_id": "205657255677-d306su7qqmgc8djl1bd2j8g6b46dd2ff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5YLO2C4aReZfOSu7mQbhTmu6dPbniE1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205657255677-d306su7qqmgc8djl1bd2j8g6b46dd2ff.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
