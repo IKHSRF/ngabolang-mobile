@@ -5,9 +5,13 @@ class ButtonToRegister extends StatelessWidget {
   const ButtonToRegister({
     Key key,
     @required this.screenSize,
+    @required this.buttonText,
+    @required this.buttonTap,
   }) : super(key: key);
 
   final Size screenSize;
+  final String buttonText;
+  final Function buttonTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +31,8 @@ class ButtonToRegister extends StatelessWidget {
         //button tap, function that run when user tap
         DarkButton(
           screenSize: screenSize,
-          buttonText: 'Create account',
-          buttonTap: () {},
+          buttonText: buttonText,
+          buttonTap: buttonTap,
         ),
       ],
     );

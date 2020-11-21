@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ngabolang/widgets/headline.dart';
 import 'local_widget/button_to_register.dart';
 import 'local_widget/login_field.dart';
+import 'register_page.dart';
 
 class LoginPage extends StatelessWidget {
   static final String id = 'login_page';
@@ -38,6 +40,10 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: screenSize.height / 6),
               ButtonToRegister(
                 screenSize: screenSize,
+                buttonText: 'Create account',
+                buttonTap: () {
+                  Get.toNamed(RegisterPage.id);
+                },
               ),
             ],
           ),
