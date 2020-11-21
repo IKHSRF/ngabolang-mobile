@@ -40,8 +40,9 @@ class RegisterPage extends StatelessWidget {
                       colorText: Colors.white,
                       backgroundColor: Colors.red,
                     );
+                  } else {
+                    Get.offAllNamed(HomePage.id);
                   }
-                  Get.offAllNamed(HomePage.id);
                 },
                 textHeadline: 'Create account',
                 buttonText: 'Register with Google',

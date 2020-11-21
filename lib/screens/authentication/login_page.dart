@@ -69,8 +69,9 @@ class LoginPage extends StatelessWidget {
                         colorText: Colors.white,
                         backgroundColor: Colors.red,
                       );
+                    } else {
+                      Get.offAllNamed(HomePage.id);
                     }
-                    Get.offAllNamed(HomePage.id);
                   }
                 },
               ),
