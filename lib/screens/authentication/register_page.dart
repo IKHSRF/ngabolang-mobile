@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ngabolang/constant/color.dart';
 import 'package:ngabolang/screens/home/home_page.dart';
 import 'package:ngabolang/services/field_validator.dart';
 import 'package:ngabolang/services/firebase_auth.dart';
 import 'package:ngabolang/widgets/headline.dart';
 
+import 'local_widget/button_to_login.dart';
 import 'local_widget/register_field.dart';
-import 'login_page.dart';
+import 'upload_user_photo.dart';
 
 class RegisterPage extends StatelessWidget {
   static final String id = 'register_page';
@@ -31,9 +31,17 @@ class RegisterPage extends StatelessWidget {
             children: [
               Headline(
                 screenSize: screenSize,
-                buttonTap: () {
-                  print(confirmPasswordController.text);
-                  print(passwordController.text);
+                buttonTap: () async {
+                  String result = await AuthServices.signInwitgGoogle();
+                  if (result != 'berhasil') {
+                    Get.snackbar(
+                      'oops something went wrong',
+                      result,
+                      colorText: Colors.white,
+                      backgroundColor: Colors.red,
+                    );
+                  }
+                  Get.offAllNamed(HomePage.id);
                 },
                 textHeadline: 'Create account',
                 buttonText: 'Register with Google',
@@ -70,33 +78,12 @@ class RegisterPage extends StatelessWidget {
                         backgroundColor: Colors.red,
                       );
                     }
-                    Get.offAllNamed(HomePage.id);
+                    Get.offAllNamed(UserPhoto.id);
                   }
                 },
               ),
               SizedBox(height: screenSize.height / 7),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Already have an account?'),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(LoginPage.id);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.only(left: 7.0),
-                        child: Text(
-                          'Log in',
-                          style: TextStyle(
-                            color: buttonBlueColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ButtonToLogin(),
             ],
           ),
         ),
