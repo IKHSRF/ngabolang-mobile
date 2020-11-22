@@ -5,8 +5,8 @@ import 'package:ngabolang/screens/authentication/register_page.dart';
 import 'package:ngabolang/widgets/blue_button.dart';
 import 'package:ngabolang/widgets/dark_button.dart';
 
-class BottonButton extends StatelessWidget {
-  const BottonButton({
+class BottomButton extends StatelessWidget {
+  const BottomButton({
     Key key,
     @required this.screenSize,
   }) : super(key: key);
