@@ -17,7 +17,7 @@ class WelcomePage extends StatelessWidget {
               width: screenSize.width,
               height: screenSize.height,
             ),
-            BottonButton(screenSize: screenSize),
+            BottomButton(screenSize: screenSize),
           ],
         ),
       ),

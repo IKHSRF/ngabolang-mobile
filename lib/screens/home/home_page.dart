@@ -19,11 +19,23 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(FirebaseAuth.instance.currentUser.displayName),
+            Container(
+              width: 300,
+              height: 300,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(FirebaseAuth.instance.currentUser.photoURL),
+                ),
+              ),
+            ),
             RaisedButton(
               onPressed: () {
                 AuthServices.signOut();
                 Get.offAllNamed(LoginPage.id);
               },
+              child: Text('Log Out'),
             )
           ],
         ),
