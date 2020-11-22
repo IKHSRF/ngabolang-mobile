@@ -32,7 +32,7 @@ class MapsScreenState extends State<MapsScreen> {
           _controller
               .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
             target: LatLng(position.latitude, position.longitude),
-            zoom: 15,
+            zoom: 17,
           )));
         }
       });
@@ -47,6 +47,8 @@ class MapsScreenState extends State<MapsScreen> {
       body: GoogleMap(
         initialCameraPosition: _initialLocation,
         zoomControlsEnabled: false,
+        myLocationEnabled: true,
+        myLocationButtonEnabled: false,
         onMapCreated: (GoogleMapController controller) {
           _controller = controller;
         },
