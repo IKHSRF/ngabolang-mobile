@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthServices {
   static FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   static GoogleSignIn _googleSignIn = GoogleSignIn();
+  static FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   static Future<void> signOut() async {
     await _firebaseAuth.signOut();
@@ -14,10 +16,17 @@ class AuthServices {
     await _googleSignIn.signOut();
   }
 
-  static Future<String> signUpWithEmailandPassword(String email, String password, String name) async {
+  static Future<String> signUpWithEmailandPassword(
+      String email, String password, String name) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
       await _firebaseAuth.currentUser.updateProfile(displayName: name);
+      String uid = _firebaseAuth.currentUser.uid;
+      await _firebaseFirestore
+          .collection('users')
+          .doc(uid)
+          .update({'displayName': name});
       return 'berhasil';
     } catch (error) {
       print(error);
@@ -28,12 +37,20 @@ class AuthServices {
   static Future<String> addProfilePhoto(String photoUrl) async {
     try {
       if (photoUrl == null || photoUrl == "") {
-        final ref = FirebaseStorage.instance.ref('user').child('defaultProfile').child('photoDefault.png');
+        final ref = FirebaseStorage.instance
+            .ref('user')
+            .child('defaultProfile')
+            .child('photoDefault.png');
         var url = await ref.getDownloadURL();
         await _firebaseAuth.currentUser.updateProfile(photoURL: url);
         return 'berhasil';
       } else {
         await _firebaseAuth.currentUser.updateProfile(photoURL: photoUrl);
+        String uid = _firebaseAuth.currentUser.uid;
+        await _firebaseFirestore
+            .collection('users')
+            .doc(uid)
+            .update({'photoURL': photoUrl});
         return 'berhasil';
       }
     } catch (error) {
@@ -42,9 +59,11 @@ class AuthServices {
     }
   }
 
-  static Future<String> loginWithEmailandPassword(String email, String password) async {
+  static Future<String> loginWithEmailandPassword(
+      String email, String password) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
       return 'berhasil';
     } catch (error) {
       print(error);
