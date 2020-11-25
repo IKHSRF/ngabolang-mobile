@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -37,12 +36,9 @@ class AuthServices {
   static Future<String> addProfilePhoto(String photoUrl) async {
     try {
       if (photoUrl == null || photoUrl == "") {
-        final ref = FirebaseStorage.instance
-            .ref('user')
-            .child('defaultProfile')
-            .child('photoDefault.png');
-        var url = await ref.getDownloadURL();
-        await _firebaseAuth.currentUser.updateProfile(photoURL: url);
+        String defaultPhoto =
+            'https://firebasestorage.googleapis.com/v0/b/ngabolang.appspot.com/o/user%2FdefaultProfile%2FphotoDefault.png?alt=media&token=4aa176b4-be69-41c8-8ba0-55b3292ac0b4';
+        await _firebaseAuth.currentUser.updateProfile(photoURL: defaultPhoto);
         return 'berhasil';
       } else {
         await _firebaseAuth.currentUser.updateProfile(photoURL: photoUrl);
