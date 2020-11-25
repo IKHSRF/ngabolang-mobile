@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+import 'local_widget/maps_fab.dart';
 
 class MapsScreen extends StatefulWidget {
   static final String id = 'maps_screen';
@@ -44,22 +46,36 @@ class MapsScreenState extends State<MapsScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: GoogleMap(
-        initialCameraPosition: _initialLocation,
-        zoomControlsEnabled: false,
-        myLocationEnabled: true,
-        myLocationButtonEnabled: false,
-        onMapCreated: (GoogleMapController controller) {
-          _controller = controller;
-        },
+      body: Stack(
+        children: [
+          // Row(
+          //   children: [
+          //     MapsFab(
+          //       onPressed: () => Get.back(),
+          //       btnIcon: Icon(
+          //         Icons.arrow_back_ios,
+          //         color: Colors.black,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          GoogleMap(
+            initialCameraPosition: _initialLocation,
+            zoomControlsEnabled: false,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: false,
+            onMapCreated: (GoogleMapController controller) {
+              _controller = controller;
+            },
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: MapsFab(
         onPressed: () => getCurrentLocation(),
-        child: Icon(
+        btnIcon: Icon(
           Icons.location_on_outlined,
           color: Colors.black,
         ),
-        backgroundColor: Colors.white,
       ),
     );
   }
