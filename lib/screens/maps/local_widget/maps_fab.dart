@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MapsFab extends StatelessWidget {
   final Function onPressed;
-  final Icon btnIcon;
+  final Widget btnIcon;
 
   MapsFab({@required this.onPressed, @required this.btnIcon});
 
