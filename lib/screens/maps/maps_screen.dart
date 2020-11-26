@@ -1,8 +1,8 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:ngabolang/screens/maps/local_widget/search_field.dart';
 import 'local_widget/maps_fab.dart';
 import 'local_widget/top_row.dart';
 
@@ -77,7 +77,13 @@ class MapsScreenState extends State<MapsScreen> {
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Icon(Icons.arrow_back_ios, color: Colors.black),
                 ),
-              )
+              ),
+              SizedBox(
+                width: 16,
+              ),
+              SearchField(
+                hintText: 'Search a place',
+              ),
             ],
           )
         ],
