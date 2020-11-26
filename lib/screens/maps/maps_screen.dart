@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'local_widget/maps_fab.dart';
+import 'local_widget/top_row.dart';
 
 class MapsScreen extends StatefulWidget {
   static final String id = 'maps_screen';
@@ -65,25 +66,20 @@ class MapsScreenState extends State<MapsScreen> {
               _controller = controller;
             },
           ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 16,
-                  ),
-                  MapsFab(
-                    onPressed: () => Get.back(),
-                    btnIcon: Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Icon(Icons.arrow_back_ios, color: Colors.black),
-                    ),
-                  ),
-                ],
+          TopRow(
+            widgetList: [
+              SizedBox(
+                width: 16,
               ),
-            ),
-          ),
+              MapsFab(
+                onPressed: () => Get.back(),
+                btnIcon: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Icon(Icons.arrow_back_ios, color: Colors.black),
+                ),
+              )
+            ],
+          )
         ],
       ),
       floatingActionButton: MapsFab(
