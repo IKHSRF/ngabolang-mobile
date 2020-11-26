@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ngabolang/constant/color.dart';
+import 'package:ngabolang/screens/maps/maps_screen.dart';
 
 import '../home_page.dart';
 
@@ -17,7 +18,7 @@ class BottomNavBar extends StatelessWidget {
         if (index == 0) {
           Get.toNamed(HomePage.id);
         } else if (index == 1) {
-          Get.snackbar('Sorry', 'feature not yet available', colorText: Colors.white, backgroundColor: Colors.red);
+          Get.toNamed(MapsScreen.id);
         } else {
           Get.snackbar('Sorry', 'feature not yet available', colorText: Colors.white, backgroundColor: Colors.red);
         }
