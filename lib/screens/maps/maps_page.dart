@@ -7,14 +7,14 @@ import 'local_widget/maps_fab.dart';
 import 'local_widget/top_row.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
-class MapsScreen extends StatefulWidget {
+class MapsPage extends StatefulWidget {
   static final String id = 'maps_screen';
 
   @override
-  State<MapsScreen> createState() => MapsScreenState();
+  State<MapsPage> createState() => MapsPageState();
 }
 
-class MapsScreenState extends State<MapsScreen> {
+class MapsPageState extends State<MapsPage> {
   bool _showHUD = true;
   GoogleMapController _controller;
   Position position;
