@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:ngabolang/screens/maps/local_widget/search_field.dart';
 import 'local_widget/maps_fab.dart';
 import 'local_widget/top_row.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class MapsScreen extends StatefulWidget {
   static final String id = 'maps_screen';
@@ -14,6 +15,7 @@ class MapsScreen extends StatefulWidget {
 }
 
 class MapsScreenState extends State<MapsScreen> {
+  bool _showHUD = true;
   GoogleMapController _controller;
   Position position;
   static final CameraPosition _initialLocation = CameraPosition(
@@ -53,40 +55,48 @@ class MapsScreenState extends State<MapsScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition: _initialLocation,
-            zoomControlsEnabled: false,
-            myLocationEnabled: true,
-            myLocationButtonEnabled: false,
-            onMapCreated: (GoogleMapController controller) {
-              _controller = controller;
-            },
-          ),
-          TopRow(
-            widgetList: [
-              SizedBox(
-                width: 16,
-              ),
-              MapsFab(
-                onPressed: () => Get.back(),
-                btnIcon: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Icon(Icons.arrow_back_ios, color: Colors.black),
+      body: ModalProgressHUD(
+        inAsyncCall: _showHUD,
+        child: Stack(
+          children: [
+            GoogleMap(
+              initialCameraPosition: _initialLocation,
+              zoomControlsEnabled: false,
+              myLocationEnabled: true,
+              myLocationButtonEnabled: false,
+              onMapCreated: (GoogleMapController controller) {
+                _controller = controller;
+              },
+            ),
+            TopRow(
+              widgetList: [
+                SizedBox(
+                  width: 16,
                 ),
-              ),
-              SizedBox(
-                width: 16,
-              ),
-              SearchField(
-                hintText: 'Search a place',
-              ),
-            ],
-          )
-        ],
+                MapsFab(
+                  onPressed: () => Get.back(),
+                  btnIcon: Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Icon(Icons.arrow_back_ios, color: Colors.black),
+                  ),
+                ),
+                SizedBox(
+                  width: 16,
+                ),
+                SearchField(
+                  hintText: 'Search a place',
+                ),
+              ],
+            )
+          ],
+        ),
       ),
       floatingActionButton: MapsFab(
         onPressed: () => getCurrentLocation(),
