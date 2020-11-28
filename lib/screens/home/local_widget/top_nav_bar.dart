@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ngabolang/screens/favorite/favorite.dart';
+import 'package:ngabolang/screens/post/add_post.dart';
 
 class TopNavBar extends StatelessWidget {
   const TopNavBar({
@@ -13,10 +15,6 @@ class TopNavBar extends StatelessWidget {
       title: Container(
         margin: EdgeInsets.only(top: 10.0, bottom: 5.0),
         child: TextField(
-          readOnly: true,
-          onTap: () {
-            Get.snackbar('Sorry', 'search feature not yet available', colorText: Colors.white, backgroundColor: Colors.red);
-          },
           decoration: InputDecoration(
             hintText: 'Search',
             prefixIcon: Icon(Icons.search),
@@ -30,7 +28,7 @@ class TopNavBar extends StatelessWidget {
             icon: Icon(Icons.camera_alt_outlined),
             color: Colors.black,
             onPressed: () {
-              Get.snackbar('Sorry', 'feature not yet available', colorText: Colors.white, backgroundColor: Colors.red);
+              Get.toNamed(AddPost.id);
             },
           ),
         ),
@@ -40,7 +38,7 @@ class TopNavBar extends StatelessWidget {
             icon: Icon(Icons.favorite_border_outlined),
             color: Colors.black,
             onPressed: () {
-              Get.snackbar('Sorry', 'feature not yet available', colorText: Colors.white, backgroundColor: Colors.red);
+              Get.toNamed(FavoritePage.id);
             },
           ),
         ),

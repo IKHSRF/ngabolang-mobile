@@ -4,11 +4,11 @@ class PostAccountDetail extends StatefulWidget {
   const PostAccountDetail({
     Key key,
     @required this.userPhotoURL,
-    @required this.snapshot,
+    @required this.userName,
   }) : super(key: key);
 
   final String userPhotoURL;
-  final snapshot;
+  final String userName;
 
   @override
   _PostAccountDetailState createState() => _PostAccountDetailState();
@@ -24,7 +24,7 @@ class _PostAccountDetailState extends State<PostAccountDetail> {
         children: [
           Container(
             padding: EdgeInsets.only(top: 10.0, right: 15.0),
-            child: widget.userPhotoURL == null
+            child: widget.userPhotoURL == null //if user profile photo still load, show progress indicator, else show profile photo
                 ? CircularProgressIndicator()
                 : Container(
                     width: 48.0,
@@ -43,10 +43,7 @@ class _PostAccountDetailState extends State<PostAccountDetail> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.snapshot.data['displayName'],
-                ),
-                Text(
-                  widget.snapshot.data['location'],
+                  widget.userName,
                 ),
               ],
             ),
@@ -54,7 +51,7 @@ class _PostAccountDetailState extends State<PostAccountDetail> {
           Spacer(),
           IconButton(
             icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border_outlined),
-            iconSize: 35.0,
+            iconSize: 25.0,
             color: isFavorite ? Colors.red : Colors.black,
             onPressed: () {
               isFavorite = !isFavorite;

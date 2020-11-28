@@ -26,7 +26,7 @@ class StorageServices {
   static Future<String> uploadPostImage(File imageFile) async {
     String fileName = basename(imageFile.path);
 
-    Reference ref = FirebaseStorage.instance.ref('post').child(fileName);
+    Reference ref = FirebaseStorage.instance.ref('posts').child(fileName);
     UploadTask task = ref.putFile(imageFile);
     TaskSnapshot taskSnapshot = await task;
 
