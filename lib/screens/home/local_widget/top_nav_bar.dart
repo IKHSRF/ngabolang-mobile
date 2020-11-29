@@ -14,6 +14,7 @@ class TopNavBar extends StatelessWidget {
       backgroundColor: Colors.white,
       title: Container(
         margin: EdgeInsets.only(top: 10.0, bottom: 5.0),
+        //TODO: Search Feature
         child: TextField(
           decoration: InputDecoration(
             hintText: 'Search',

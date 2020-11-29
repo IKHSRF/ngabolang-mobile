@@ -13,12 +13,14 @@ class _FavoritePageState extends State<FavoritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            children: [
-              FavoriteHeadline(),
-            ],
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              children: [
+                FavoriteHeadline(),
+              ],
+            ),
           ),
         ),
       ),
