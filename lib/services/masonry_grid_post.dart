@@ -7,8 +7,10 @@ class MasonryGridPost extends StatelessWidget {
   const MasonryGridPost({
     Key key,
     @required this.snapshot,
+    @required this.isFavorite,
   }) : super(key: key);
   final snapshot;
+  final isFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +20,12 @@ class MasonryGridPost extends StatelessWidget {
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         crossAxisCount: 2,
-        itemCount: snapshot.data.docs.length,
+        itemCount: (isFavorite) ? snapshot.data.length : snapshot.data.docs.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => Get.toNamed(
               DetailPost.id,
-              arguments: snapshot.data.docs[index].id,
+              arguments: (isFavorite) ? snapshot.data.id : snapshot.data.docs[index].id,
             ),
             child: Container(
               padding: EdgeInsets.all(4.0),
@@ -33,7 +35,7 @@ class MasonryGridPost extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.network(
-                  snapshot.data.docs[index]['url'],
+                  (isFavorite) ? snapshot.data['url'] : snapshot.data.docs[index]['url'],
                   fit: BoxFit.cover,
                 ),
               ),

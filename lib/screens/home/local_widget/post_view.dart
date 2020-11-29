@@ -17,7 +17,10 @@ class PostView extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        return MasonryGridPost(snapshot: snapshot);
+        return MasonryGridPost(
+          snapshot: snapshot,
+          isFavorite: false,
+        );
       },
     );
   }

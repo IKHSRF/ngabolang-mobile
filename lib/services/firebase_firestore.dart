@@ -17,4 +17,28 @@ class DatabaseServices {
       return error.message;
     }
   }
+
+  static Future<String> addFavorite(String postID, String uid) async {
+    try {
+      await _firebaseFirestore.collection('users').doc(uid).update({
+        'favorites': FieldValue.arrayUnion([postID]),
+      });
+      return 'berhasil';
+    } catch (error) {
+      print(error);
+      return error.message;
+    }
+  }
+
+  static Future<String> removeFavorite(String postID, String uid) async {
+    try {
+      await _firebaseFirestore.collection('users').doc(uid).update({
+        'favorites': FieldValue.arrayRemove([postID]),
+      });
+      return 'berhasil';
+    } catch (error) {
+      print(error);
+      return error.message;
+    }
+  }
 }

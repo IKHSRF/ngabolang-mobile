@@ -65,12 +65,24 @@ class _LoginPageState extends State<LoginPage> {
                     });
                     //if the email and password is wrong, return snackbar with error
                     if (emailValidate != null && passwordValidate != null) {
+                      if (!mounted) return;
+                      setState(() {
+                        isLoading = false;
+                      });
                       Get.snackbar('Incorrect email or password', 'please fill in the fields correctly', backgroundColor: Colors.red, colorText: Colors.white);
                       //if the email is wrong, return snackbar with error
                     } else if (emailValidate != null) {
+                      if (!mounted) return;
+                      setState(() {
+                        isLoading = false;
+                      });
                       Get.snackbar('Incorrect email or password', emailValidate, backgroundColor: Colors.red, colorText: Colors.white);
                       //if the password is wrong, return snackbar with error
                     } else if (passwordValidate != null) {
+                      if (!mounted) return;
+                      setState(() {
+                        isLoading = false;
+                      });
                       Get.snackbar('Incorrect email or password', passwordValidate, backgroundColor: Colors.red, colorText: Colors.white);
                     }
                     //if the email and password is right, return snackbar with success

@@ -70,14 +70,34 @@ class _RegisterPageState extends State<RegisterPage> {
                       isLoading = true;
                     });
                     if (emailValidate != null) {
+                      if (!mounted) return;
+                      setState(() {
+                        isLoading = false;
+                      });
                       Get.snackbar('Incorrect email or password', emailValidate, backgroundColor: Colors.red, colorText: Colors.white);
                     } else if (passwordValidate != null) {
+                      if (!mounted) return;
+                      setState(() {
+                        isLoading = false;
+                      });
                       Get.snackbar('Incorrect email or password', passwordValidate, backgroundColor: Colors.red, colorText: Colors.white);
                     } else if (nameValidate != null) {
+                      if (!mounted) return;
+                      setState(() {
+                        isLoading = false;
+                      });
                       Get.snackbar('Enter your name correctly', nameValidate, backgroundColor: Colors.red, colorText: Colors.white);
                     } else if (confirmPasswordController == null) {
+                      if (!mounted) return;
+                      setState(() {
+                        isLoading = false;
+                      });
                       Get.snackbar('Password do not match', 'Password do not match', backgroundColor: Colors.red, colorText: Colors.white);
                     } else if (confirmPasswordController.text != passwordController.text) {
+                      if (!mounted) return;
+                      setState(() {
+                        isLoading = false;
+                      });
                       Get.snackbar('Password do not match', 'Password do not match', backgroundColor: Colors.red, colorText: Colors.white);
                     } else {
                       String result = await AuthServices.signUpWithEmailandPassword(

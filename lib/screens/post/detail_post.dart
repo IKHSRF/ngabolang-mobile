@@ -61,6 +61,9 @@ class _DetailPostState extends State<DetailPost> {
                     PostAccountDetail(
                       userPhotoURL: userPhotoURL,
                       userName: userName,
+                      snapshot: snapshot,
+                      //argument yang diberikan berupa document id
+                      userFavorite: Get.arguments,
                     ),
                   ],
                 );
