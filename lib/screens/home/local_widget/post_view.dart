@@ -19,7 +19,6 @@ class PostView extends StatelessWidget {
         }
         return MasonryGridPost(
           snapshot: snapshot,
-          isFavorite: false,
         );
       },
     );

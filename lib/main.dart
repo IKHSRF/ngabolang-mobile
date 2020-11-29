@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: LoginPage.id,
+      initialRoute: GetStartedPage.id,
       getPages: [
         GetPage(
           name: GetStartedPage.id,
