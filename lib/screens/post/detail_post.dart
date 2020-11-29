@@ -14,6 +14,7 @@ class DetailPost extends StatefulWidget {
 
 class _DetailPostState extends State<DetailPost> {
   String userPhotoURL;
+  String userName = '';
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +28,24 @@ class _DetailPostState extends State<DetailPost> {
             future: FirebaseFirestore.instance.collection('posts').doc(Get.arguments).get(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                FirebaseFirestore.instance.collection('users').doc(snapshot.data['uid']).get().then((DocumentSnapshot documentSnapshot) {
-                  if (documentSnapshot.exists) {
-                    if (!mounted) return;
-                    setState(() {
-                      userPhotoURL = documentSnapshot.data()['photoURL'];
-                    });
-                  } else {
-                    if (!mounted) return;
-                    setState(() {
-                      userPhotoURL = AuthServices.defaultPhoto;
-                    });
-                  }
-                });
+                //check user exist or not
+                FirebaseFirestore.instance.collection('users').doc(snapshot.data['uid']).get().then(
+                  (DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists) {
+                      if (!mounted) return;
+                      setState(() {
+                        userPhotoURL = documentSnapshot.data()['photoURL'];
+                        userName = documentSnapshot.data()['displayName'];
+                      });
+                    } else {
+                      if (!mounted) return;
+                      setState(() {
+                        userPhotoURL = AuthServices.defaultPhoto;
+                        userName = 'Deleted User';
+                      });
+                    }
+                  },
+                );
                 return Column(
                   children: [
                     Align(
@@ -54,7 +60,10 @@ class _DetailPostState extends State<DetailPost> {
                     ),
                     PostAccountDetail(
                       userPhotoURL: userPhotoURL,
+                      userName: userName,
                       snapshot: snapshot,
+                      //argument yang diberikan berupa document id
+                      userFavorite: Get.arguments,
                     ),
                   ],
                 );

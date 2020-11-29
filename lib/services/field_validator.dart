@@ -31,10 +31,13 @@ class Validator {
 
   static String nameValidate(String name) {
     if (name.isEmpty) {
-      return 'ini salah 1';
+      return 'name is required';
     }
     if (name.length < 2) {
-      return 'ini salah 2';
+      return 'enter your correct name';
+    }
+    if (!RegExp(r'^[a-zA-Z]+$').hasMatch(name)) {
+      return "enter your correct name";
     }
     return null;
   }
