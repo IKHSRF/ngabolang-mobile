@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'local_widget/bottom_nav_bar.dart';
+import '../../widgets/bottom_nav_bar.dart';
 import 'local_widget/post_view.dart';
 import 'local_widget/top_nav_bar.dart';
 

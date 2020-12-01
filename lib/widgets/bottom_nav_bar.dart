@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:ngabolang/constant/color.dart';
 import 'package:ngabolang/screens/maps/maps_page.dart';
 
-import '../home_page.dart';
+import '../screens/home/home_page.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
