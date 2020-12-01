@@ -33,6 +33,7 @@ class _AddPostState extends State<AddPost> {
                 imagePath: imagePath,
                 buttonPress: () async {
                   File file = await StorageServices.getImage();
+                  //upload image to storage
                   imagePath = await StorageServices.uploadPostImage(file);
                   setState(() {});
                 },
@@ -48,9 +49,10 @@ class _AddPostState extends State<AddPost> {
                   } else if (imagePath.isNull) {
                     Get.snackbar('Oops Something when wrong', 'Image Cannot Empty', colorText: Colors.white, backgroundColor: Colors.red);
                   } else {
+                    //upload image to firestore
                     var result = await DatabaseServices.addPost(
                       Timestamp.fromDate(DateTime.now()),
-                      locationController.text,
+                      locationController.text.toUpperCase(),
                       FirebaseAuth.instance.currentUser.uid,
                       imagePath,
                     );

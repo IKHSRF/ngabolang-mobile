@@ -5,12 +5,13 @@ class DatabaseServices {
 
   static Future<String> addPost(Timestamp date, String location, String uid, String imageUrl) async {
     try {
-      await _firebaseFirestore.collection('posts').doc().set({
+      var result = await _firebaseFirestore.collection('posts').add({
         'date': date,
         'location': location,
         'uid': uid,
         'url': imageUrl,
       });
+      print(result.id);
       return 'berhasil';
     } catch (error) {
       print(error);

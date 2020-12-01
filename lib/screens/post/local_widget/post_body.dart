@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:recase/recase.dart';
 
 class PostBody extends StatelessWidget {
   const PostBody({
@@ -10,6 +11,7 @@ class PostBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ReCase location = ReCase(snapshot.data['location']);
     return Container(
       padding: EdgeInsets.all(15.0),
       child: Column(
@@ -23,7 +25,7 @@ class PostBody extends StatelessWidget {
           //this for location
           Container(
             padding: EdgeInsets.only(bottom: 10.0),
-            child: Text(snapshot.data['location']),
+            child: Text(location.titleCase),
           ),
           //this is for image
           Container(
