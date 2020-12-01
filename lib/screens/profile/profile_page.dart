@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ngabolang/screens/profile/local_widget/profile_appbar.dart';
+import 'package:ngabolang/screens/profile/local_widget/stats_row.dart';
 import 'package:ngabolang/widgets/bottom_nav_bar.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -18,6 +19,42 @@ class _ProfilePageState extends State<ProfilePage> {
         child: ProfileAppBar(),
       ),
       bottomNavigationBar: BottomNavBar(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    child: Icon(Icons.person_outline),
+                  ),
+                  SizedBox(
+                    width: 80,
+                  ),
+                  StatsRow(postsCount: 27, favoritesCount: 81),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                'John Doe',
+                style: TextStyle(fontSize: 22),
+              ),
+              Text(
+                'user@email.me',
+                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
