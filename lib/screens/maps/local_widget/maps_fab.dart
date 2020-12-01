@@ -12,6 +12,7 @@ class MapsFab extends StatelessWidget {
       onPressed: onPressed,
       child: btnIcon,
       backgroundColor: Colors.white,
+      heroTag: null,
     );
   }
 }
