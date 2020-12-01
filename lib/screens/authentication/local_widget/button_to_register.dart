@@ -21,7 +21,7 @@ class ButtonToRegister extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           child: Text(
-            "Don't have account?",
+            "Don't have an account?",
             style: TextStyle(fontSize: 14),
           ),
         ),
