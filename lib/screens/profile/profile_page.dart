@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ngabolang/screens/profile/local_widget/edit_button.dart';
 import 'package:ngabolang/screens/profile/local_widget/profile_appbar.dart';
 import 'package:ngabolang/screens/profile/local_widget/stats_row.dart';
 import 'package:ngabolang/widgets/bottom_nav_bar.dart';
@@ -50,6 +51,12 @@ class _ProfilePageState extends State<ProfilePage> {
               Text(
                 'user@email.me',
                 style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              EditButton(
+                onButtonTap: () {}, // TODO: Add edit function
               ),
             ],
           ),
