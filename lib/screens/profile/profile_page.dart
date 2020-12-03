@@ -3,6 +3,7 @@ import 'package:ngabolang/screens/profile/local_widget/edit_button.dart';
 import 'package:ngabolang/screens/profile/local_widget/profile_appbar.dart';
 import 'package:ngabolang/screens/profile/local_widget/stats_row.dart';
 import 'package:ngabolang/widgets/bottom_nav_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfilePage extends StatefulWidget {
   static final String id = 'profile_page';
@@ -12,6 +13,19 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String photoUrl;
+
+  void getUserData() {
+    photoUrl = _auth.currentUser.photoURL;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    child: Icon(Icons.person_outline),
+                    backgroundImage: NetworkImage(photoUrl),
                   ),
                   SizedBox(
                     width: 80,
