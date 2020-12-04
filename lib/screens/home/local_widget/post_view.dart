@@ -19,6 +19,7 @@ class PostView extends StatelessWidget {
         }
         return MasonryGridPost(
           snapshot: snapshot,
+          margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
         );
       },
     );
