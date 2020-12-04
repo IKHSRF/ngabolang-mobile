@@ -7,13 +7,15 @@ class MasonryGridPost extends StatelessWidget {
   const MasonryGridPost({
     Key key,
     @required this.snapshot,
+    @required this.margin,
   }) : super(key: key);
   final snapshot;
+  final EdgeInsetsGeometry margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
+      margin: margin,
       child: StaggeredGridView.countBuilder(
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
