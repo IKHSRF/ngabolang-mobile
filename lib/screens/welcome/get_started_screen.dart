@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:ngabolang/screens/welcome/local_widget/app_logo.dart';
 import 'package:ngabolang/widgets/blue_button.dart';
 import 'package:ngabolang/widgets/background_image.dart';
-
 import 'welcome_screen.dart';
 
 class GetStartedPage extends StatelessWidget {
@@ -23,7 +22,8 @@ class GetStartedPage extends StatelessWidget {
           //dark layer for covering background
           Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: screenSize.height / 15),
+            padding: EdgeInsets.symmetric(
+                horizontal: 20.0, vertical: screenSize.height / 15),
             decoration: BoxDecoration(
               color: Colors.black26,
             ),
