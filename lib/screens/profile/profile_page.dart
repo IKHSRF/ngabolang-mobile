@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ngabolang/screens/profile/local_widget/edit_button.dart';
 import 'package:ngabolang/screens/profile/local_widget/profile_appbar.dart';
 import 'package:ngabolang/screens/profile/local_widget/stats_row.dart';
@@ -6,6 +7,7 @@ import 'package:ngabolang/widgets/bottom_nav_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ngabolang/services/masonry_grid_post.dart';
+import 'package:ngabolang/screens/welcome/get_started_screen.dart';
 
 class ProfilePage extends StatefulWidget {
   static final String id = 'profile_page';
@@ -50,7 +52,12 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(56),
-        child: ProfileAppBar(),
+        child: ProfileAppBar(
+          onIconTap: () async {
+            await FirebaseAuth.instance.signOut();
+            Get.offAllNamed(GetStartedPage.id);
+          },
+        ),
       ),
       bottomNavigationBar: BottomNavBar(),
       body: StreamBuilder(
