@@ -36,7 +36,7 @@ class Validator {
     if (name.length < 2) {
       return 'enter your correct name';
     }
-    if (!RegExp(r'^[a-zA-Z]+$').hasMatch(name)) {
+    if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(name)) {
       return "enter your correct name";
     }
     return null;
