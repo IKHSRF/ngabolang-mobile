@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:recase/recase.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PostBody extends StatelessWidget {
   const PostBody({
@@ -35,7 +36,11 @@ class PostBody extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
-              child: Image.network(snapshot.data['url']),
+              child: CachedNetworkImage(
+                imageUrl: snapshot.data['url'],
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    CircularProgressIndicator(value: downloadProgress.progress),
+              ),
             ),
           ),
         ],

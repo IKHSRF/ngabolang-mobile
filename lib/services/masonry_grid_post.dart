@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:ngabolang/screens/post/detail_post.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class MasonryGridPost extends StatelessWidget {
   const MasonryGridPost({
@@ -33,12 +34,13 @@ class MasonryGridPost extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.network(
-                  snapshot.data.docs[index]['url'],
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(15),
+                  child: CachedNetworkImage(
+                    imageUrl: snapshot.data.docs[index]['url'],
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    fit: BoxFit.cover,
+                  )),
             ),
           );
         },
