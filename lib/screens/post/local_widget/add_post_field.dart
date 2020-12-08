@@ -26,11 +26,6 @@ class AddPostField extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           PostField(
-            controller: tagsController,
-            hintText: 'Tags',
-            screenSize: screenSize,
-          ),
-          PostField(
             controller: locationController,
             hintText: 'Location',
             screenSize: screenSize,
