@@ -8,7 +8,10 @@ class StorageServices {
   static Future<File> getImage() async {
     final picker = ImagePicker();
     var imageFile;
-    PickedFile pickedFile = await picker.getImage(source: ImageSource.gallery);
+    PickedFile pickedFile = await picker.getImage(
+      source: ImageSource.gallery,
+      imageQuality: 50,
+    );
     imageFile = File(pickedFile.path);
     return imageFile;
   }
