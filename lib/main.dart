@@ -12,6 +12,7 @@ import 'package:ngabolang/screens/post/detail_post.dart';
 import 'package:ngabolang/screens/profile/profile_page.dart';
 import 'package:ngabolang/screens/welcome/get_started_screen.dart';
 import 'package:ngabolang/screens/welcome/welcome_screen.dart';
+import 'package:ngabolang/screens/profile/edit_profile.dart';
 import 'screens/welcome/splash_screen.dart';
 
 void main() async {
@@ -74,6 +75,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: SplashScreen.id,
           page: () => SplashScreen(),
+        ),
+        GetPage(
+          name: EditProfile.id,
+          page: () => EditProfile(),
         ),
       ],
     );
