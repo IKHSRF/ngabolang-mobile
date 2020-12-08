@@ -39,8 +39,9 @@ class MasonryGridPost extends StatelessWidget {
                       //   Image.network(snapshot.data.docs[index]['url']),
                       // )
                       CachedNetworkImage(
-                    imageUrl: snapshot.data.docs[index]['url'],
-                    placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                    imageUrl: snapshot.data.docs[index]['thumbUrl'],
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
                     fit: BoxFit.cover,
                   )),
             ),
