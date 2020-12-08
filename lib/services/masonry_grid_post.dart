@@ -36,7 +36,7 @@ class MasonryGridPost extends StatelessWidget {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: CachedNetworkImage(
-                    imageUrl: snapshot.data.docs[index]['url'],
+                    imageUrl: snapshot.data.docs[index]['thumbUrl'],
                     placeholder: (context, url) =>
                         Center(child: CircularProgressIndicator()),
                     fit: BoxFit.cover,
