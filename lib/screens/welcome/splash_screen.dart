@@ -22,11 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void checkLoggedInUser() {
     var user = _auth.currentUser;
     if (user != null) {
-      Future.delayed(Duration(seconds: 5), () {
+      Future.delayed(Duration(seconds: 3), () {
         Get.offAllNamed(HomePage.id);
       });
     } else {
-      Future.delayed(Duration(seconds: 5), () {
+      Future.delayed(Duration(seconds: 3), () {
         Get.offAllNamed(GetStartedPage.id);
       });
     }
