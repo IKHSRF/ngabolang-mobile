@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class _FavoritePageState extends State<FavoritePage> {
                         favoriteList.add(document);
                       });
                       return Container(
-                        height: screenSize.height * 0.8,
+                        height: screenSize.height,
                         child: StaggeredGridView.countBuilder(
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 10,
@@ -61,12 +62,12 @@ class _FavoritePageState extends State<FavoritePage> {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: Image.network(
-                                        snapshot.data['url'],
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: CachedNetworkImage(
+                                          imageUrl: snapshot.data['url'],
+                                          placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                                          fit: BoxFit.cover,
+                                        )),
                                   ),
                                 );
                               },

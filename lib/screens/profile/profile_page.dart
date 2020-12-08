@@ -61,10 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       bottomNavigationBar: BottomNavBar(),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('posts')
-            .where('uid', isEqualTo: uid)
-            .snapshots(),
+        stream: FirebaseFirestore.instance.collection('posts').where('uid', isEqualTo: uid).snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -89,9 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(
                         width: 80,
                       ),
-                      StatsRow(
-                          postsCount: userPostCount,
-                          favoritesCount: userFavoritesCount),
+                      StatsRow(postsCount: userPostCount, favoritesCount: userFavoritesCount),
                     ],
                   ),
                   SizedBox(
