@@ -8,7 +8,7 @@ import 'package:ngabolang/services/firebase_auth.dart';
 import 'package:ngabolang/services/firebase_storage.dart';
 import 'package:ngabolang/widgets/dark_button.dart';
 
-import 'local_widget/user_image_picker.dart';
+import '../../widgets/user_image_picker.dart';
 
 class UserPhoto extends StatefulWidget {
   static final String id = 'user_photo';
@@ -43,7 +43,8 @@ class _UserPhotoState extends State<UserPhoto> {
                 imageUrl: imagePath,
                 buttonTap: () async {
                   File file = await StorageServices.getImage();
-                  imagePath = await StorageServices.uploadPhoto(file, FirebaseAuth.instance.currentUser.uid);
+                  imagePath = await StorageServices.uploadPhoto(
+                      file, FirebaseAuth.instance.currentUser.uid);
                   setState(() {});
                 },
               ),
