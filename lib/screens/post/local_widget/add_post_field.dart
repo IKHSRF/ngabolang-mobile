@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngabolang/widgets/blue_button.dart';
 
-import 'post_field.dart';
+import '../../../widgets/post_field.dart';
 
 class AddPostField extends StatelessWidget {
   const AddPostField({
