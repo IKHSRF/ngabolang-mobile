@@ -72,8 +72,10 @@ class _EditProfileState extends State<EditProfile> {
             BlueButton(
               screenSize: screenSize,
               buttonTap: () async {
-                var result =
-                    await AuthServices.editUserProfile(name, email, imageUrl);
+                var result = await AuthServices.editUserProfile(
+                    nameController.text.trim(),
+                    emailController.text.trim(),
+                    imageUrl);
 
                 if (result != 'berhasil') {
                   Get.snackbar('Opps Something went wrong', result,
