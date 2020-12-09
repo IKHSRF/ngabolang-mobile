@@ -41,12 +41,14 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 36.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             UserImagePicker(
               screenSize: screenSize,
-              imageUrl: imageUrl,
+              imageUrl: imageUrl == _user.photoURL ? null : imageUrl,
               buttonTap: () async {
                 File file = await StorageServices.getImage();
                 imageUrl = await StorageServices.uploadPhoto(
@@ -57,12 +59,15 @@ class _EditProfileState extends State<EditProfile> {
             PostField(
               controller: emailController,
               hintText: 'Email',
-              screenSize: screenSize,
+              margin: screenSize.height * 0.01,
             ),
             PostField(
               controller: nameController,
               hintText: 'Full Name',
-              screenSize: screenSize,
+              margin: 0,
+            ),
+            SizedBox(
+              height: 36,
             ),
             BlueButton(
               screenSize: screenSize,

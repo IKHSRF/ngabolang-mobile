@@ -28,7 +28,7 @@ class AddPostField extends StatelessWidget {
           PostField(
             controller: locationController,
             hintText: 'Location',
-            screenSize: screenSize,
+            margin: screenSize.height * 0.03,
           ),
           SizedBox(height: screenSize.height * 0.08),
           BlueButton(
