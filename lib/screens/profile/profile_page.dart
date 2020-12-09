@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ngabolang/screens/profile/edit_profile.dart';
 import 'package:ngabolang/screens/profile/local_widget/edit_button.dart';
 import 'package:ngabolang/screens/profile/local_widget/profile_appbar.dart';
 import 'package:ngabolang/screens/profile/local_widget/stats_row.dart';
@@ -61,7 +62,10 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       bottomNavigationBar: BottomNavBar(),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('posts').where('uid', isEqualTo: uid).snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('posts')
+            .where('uid', isEqualTo: uid)
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -86,7 +90,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(
                         width: 80,
                       ),
-                      StatsRow(postsCount: userPostCount, favoritesCount: userFavoritesCount),
+                      StatsRow(
+                          postsCount: userPostCount,
+                          favoritesCount: userFavoritesCount),
                     ],
                   ),
                   SizedBox(
@@ -104,7 +110,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     height: 10,
                   ),
                   EditButton(
-                    onButtonTap: () {}, // TODO: Add edit function
+                    onButtonTap: () {
+                      Get.toNamed(EditProfile.id);
+                    },
                   ),
                   SizedBox(
                     height: 15,
