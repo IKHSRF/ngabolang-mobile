@@ -18,32 +18,12 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final User _user = FirebaseAuth.instance.currentUser;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  String photoUrl = '';
   String uid;
-  DocumentSnapshot user;
-  int userPostCount = 0;
-  List<dynamic> userFavorites;
-  int userFavoritesCount = 0;
-  String name = 'Name';
-  String email = 'Email';
-
-  void getUserData() async {
-    uid = _user.uid;
-    user = await _firestore.collection('users').doc(uid).get();
-    setState(() {
-      photoUrl = _user.photoURL;
-      name = _user.displayName;
-      email = _user.email;
-      userPostCount = user.data()['posts'];
-      userFavorites = user.data()['favorites'];
-      userFavoritesCount = userFavorites.length;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    getUserData();
+    uid = _user.uid;
   }
 
   @override
@@ -59,13 +39,28 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       bottomNavigationBar: BottomNavBar(),
-      body: UserPostList(
-        uid: uid,
-        photoUrl: photoUrl,
-        userPostCount: userPostCount,
-        userFavoritesCount: userFavoritesCount,
-        name: name,
-        email: email,
+      body: StreamBuilder(
+        stream: _firestore
+            .collection('users')
+            .where('uid', isEqualTo: uid)
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          QueryDocumentSnapshot userData = snapshot.data.docs[0];
+          return UserPostList(
+            uid: uid,
+            photoUrl: userData['photoURL'],
+            userPostCount: userData['posts'],
+            userFavoritesCount: userData['favorites'].length,
+            name: userData['displayName'],
+            email: userData['email'],
+          );
+        },
       ),
     );
   }
