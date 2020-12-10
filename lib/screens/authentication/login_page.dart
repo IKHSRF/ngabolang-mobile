@@ -25,7 +25,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     String emailValidate = Validator.emailValidate(emailController.text.trim());
-    String passwordValidate = Validator.passwordValidate(passwordController.text.trim());
+    String passwordValidate =
+        Validator.passwordValidate(passwordController.text.trim());
 
     return Scaffold(
       body: ModalProgressHUD(
@@ -40,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                   screenSize: screenSize,
                   buttonTap: () async {
                     String result = await AuthServices.signInwitgGoogle();
-                    if (result != 'berhasil') {
+                    if (result != 'success') {
                       Get.snackbar(
                         'oops something went wrong',
                         result,
@@ -69,29 +70,36 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {
                         isLoading = false;
                       });
-                      Get.snackbar('Incorrect email or password', 'please fill in the fields correctly', backgroundColor: Colors.red, colorText: Colors.white);
+                      Get.snackbar('Incorrect email or password',
+                          'please fill in the fields correctly',
+                          backgroundColor: Colors.red, colorText: Colors.white);
                       //if the email is wrong, return snackbar with error
                     } else if (emailValidate != null) {
                       if (!mounted) return;
                       setState(() {
                         isLoading = false;
                       });
-                      Get.snackbar('Incorrect email or password', emailValidate, backgroundColor: Colors.red, colorText: Colors.white);
+                      Get.snackbar('Incorrect email or password', emailValidate,
+                          backgroundColor: Colors.red, colorText: Colors.white);
                       //if the password is wrong, return snackbar with error
                     } else if (passwordValidate != null) {
                       if (!mounted) return;
                       setState(() {
                         isLoading = false;
                       });
-                      Get.snackbar('Incorrect email or password', passwordValidate, backgroundColor: Colors.red, colorText: Colors.white);
+                      Get.snackbar(
+                          'Incorrect email or password', passwordValidate,
+                          backgroundColor: Colors.red, colorText: Colors.white);
                     }
                     //if the email and password is right, return snackbar with success
                     else {
-                      String result = await AuthServices.loginWithEmailandPassword(emailController.text, passwordController.text);
+                      String result =
+                          await AuthServices.loginWithEmailandPassword(
+                              emailController.text, passwordController.text);
                       setState(() {
                         isLoading = false;
                       });
-                      if (result != 'berhasil') {
+                      if (result != 'success') {
                         Get.snackbar(
                           'oops something went wrong',
                           result,

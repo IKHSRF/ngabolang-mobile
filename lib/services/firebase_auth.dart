@@ -20,7 +20,7 @@ class AuthServices {
       await _firebaseFirestore.collection('users').doc(uid).update(
         {'displayName': name},
       );
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;
@@ -35,14 +35,14 @@ class AuthServices {
         await _firebaseFirestore.collection('users').doc(uid).update(
           {'photoURL': defaultPhoto},
         );
-        return 'berhasil';
+        return 'success';
       } else {
         await _firebaseAuth.currentUser.updateProfile(photoURL: photoUrl);
 
         await _firebaseFirestore.collection('users').doc(uid).update(
           {'photoURL': photoUrl},
         );
-        return 'berhasil';
+        return 'success';
       }
     } catch (error) {
       print(error);
@@ -53,7 +53,7 @@ class AuthServices {
   static Future<String> loginWithEmailandPassword(String email, String password) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;
@@ -69,7 +69,7 @@ class AuthServices {
         idToken: googleAuth.idToken,
       );
       await _firebaseAuth.signInWithCredential(credential);
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;
@@ -87,7 +87,7 @@ class AuthServices {
             'photoURL': defaultPhoto,
           },
         );
-        return 'berhasil';
+        return 'success';
       } else {
         await _firebaseAuth.currentUser.updateProfile(displayName: name, photoURL: photoUrl);
         await _firebaseFirestore.collection('users').doc(uid).update(
@@ -96,7 +96,7 @@ class AuthServices {
             'photoURL': photoUrl,
           },
         );
-        return 'berhasil';
+        return 'success';
       }
     } catch (error) {
       print(error);

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
 
 class DatabaseServices {
   static FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  static Future<String> addPost(Timestamp date, String location, String uid, String imageUrl) async {
+  static Future<String> addPost(
+      Timestamp date, String location, String uid, String imageUrl) async {
     try {
       var result = await _firebaseFirestore.collection('posts').add({
         'date': date,
@@ -13,7 +13,7 @@ class DatabaseServices {
         'url': imageUrl,
       });
       print(result.id);
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;
@@ -25,7 +25,7 @@ class DatabaseServices {
       await _firebaseFirestore.collection('users').doc(uid).update({
         'favorites': FieldValue.arrayUnion([postID]),
       });
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;
@@ -37,7 +37,7 @@ class DatabaseServices {
       await _firebaseFirestore.collection('users').doc(uid).update({
         'favorites': FieldValue.arrayRemove([postID]),
       });
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;
@@ -47,7 +47,7 @@ class DatabaseServices {
   static Future<String> removePost(String postID) async {
     try {
       await _firebaseFirestore.collection('posts').doc(postID).delete();
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;

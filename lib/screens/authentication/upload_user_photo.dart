@@ -59,7 +59,7 @@ class _UserPhotoState extends State<UserPhoto> {
                   setState(() {
                     isLoading = false;
                   });
-                  if (result != 'berhasil') {
+                  if (result != 'success') {
                     Get.snackbar(
                       'oops something went wrong',
                       result,

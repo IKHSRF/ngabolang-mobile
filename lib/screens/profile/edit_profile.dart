@@ -90,7 +90,7 @@ class _EditProfileState extends State<EditProfile> {
                         showLoading = !showLoading;
                       });
 
-                      if (result != 'berhasil') {
+                      if (result != 'success') {
                         Get.snackbar('Opps Something went wrong', result,
                             colorText: Colors.white,
                             backgroundColor: Colors.red);
