@@ -21,14 +21,16 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     String emailValidate = Validator.emailValidate(emailController.text.trim());
-    String passwordValidate = Validator.passwordValidate(passwordController.text.trim());
+    String passwordValidate =
+        Validator.passwordValidate(passwordController.text.trim());
     String nameValidate = Validator.nameValidate(nameController.text.trim());
 
     return Scaffold(
@@ -44,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   screenSize: screenSize,
                   buttonTap: () async {
                     String result = await AuthServices.signInwitgGoogle();
-                    if (result != 'berhasil') {
+                    if (result != 'success') {
                       Get.snackbar(
                         'oops something went wrong',
                         result,
@@ -74,33 +76,43 @@ class _RegisterPageState extends State<RegisterPage> {
                       setState(() {
                         isLoading = false;
                       });
-                      Get.snackbar('Incorrect email or password', emailValidate, backgroundColor: Colors.red, colorText: Colors.white);
+                      Get.snackbar('Incorrect email or password', emailValidate,
+                          backgroundColor: Colors.red, colorText: Colors.white);
                     } else if (passwordValidate != null) {
                       if (!mounted) return;
                       setState(() {
                         isLoading = false;
                       });
-                      Get.snackbar('Incorrect email or password', passwordValidate, backgroundColor: Colors.red, colorText: Colors.white);
+                      Get.snackbar(
+                          'Incorrect email or password', passwordValidate,
+                          backgroundColor: Colors.red, colorText: Colors.white);
                     } else if (nameValidate != null) {
                       if (!mounted) return;
                       setState(() {
                         isLoading = false;
                       });
-                      Get.snackbar('Enter your name correctly', nameValidate, backgroundColor: Colors.red, colorText: Colors.white);
+                      Get.snackbar('Enter your name correctly', nameValidate,
+                          backgroundColor: Colors.red, colorText: Colors.white);
                     } else if (confirmPasswordController == null) {
                       if (!mounted) return;
                       setState(() {
                         isLoading = false;
                       });
-                      Get.snackbar('Password do not match', 'Password do not match', backgroundColor: Colors.red, colorText: Colors.white);
-                    } else if (confirmPasswordController.text != passwordController.text) {
+                      Get.snackbar(
+                          'Password do not match', 'Password do not match',
+                          backgroundColor: Colors.red, colorText: Colors.white);
+                    } else if (confirmPasswordController.text !=
+                        passwordController.text) {
                       if (!mounted) return;
                       setState(() {
                         isLoading = false;
                       });
-                      Get.snackbar('Password do not match', 'Password do not match', backgroundColor: Colors.red, colorText: Colors.white);
+                      Get.snackbar(
+                          'Password do not match', 'Password do not match',
+                          backgroundColor: Colors.red, colorText: Colors.white);
                     } else {
-                      String result = await AuthServices.signUpWithEmailandPassword(
+                      String result =
+                          await AuthServices.signUpWithEmailandPassword(
                         emailController.text,
                         passwordController.text,
                         nameController.text,
@@ -108,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       setState(() {
                         isLoading = false;
                       });
-                      if (result != 'berhasil') {
+                      if (result != 'success') {
                         Get.snackbar(
                           'oops something went wrong',
                           result,

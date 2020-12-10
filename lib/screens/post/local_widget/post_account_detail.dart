@@ -88,7 +88,7 @@ class _PostAccountDetailState extends State<PostAccountDetail> {
                                 Get.back();
                                 var result = await DatabaseServices.removePost(
                                     widget.snapshot.data.id);
-                                if (result != 'berhasil') {
+                                if (result != 'success') {
                                   Get.snackbar(
                                       'Opps Something went wrong', result,
                                       colorText: Colors.white,
@@ -111,7 +111,7 @@ class _PostAccountDetailState extends State<PostAccountDetail> {
                             var result = await DatabaseServices.addFavorite(
                                 widget.snapshot.data.id,
                                 FirebaseAuth.instance.currentUser.uid);
-                            if (result != 'berhasil') {
+                            if (result != 'success') {
                               Get.snackbar('Opps Something went wrong', result,
                                   colorText: Colors.white,
                                   backgroundColor: Colors.red);
@@ -122,7 +122,7 @@ class _PostAccountDetailState extends State<PostAccountDetail> {
                             var result = await DatabaseServices.removeFavorite(
                                 widget.snapshot.data.id,
                                 FirebaseAuth.instance.currentUser.uid);
-                            if (result != 'berhasil') {
+                            if (result != 'success') {
                               Get.snackbar('Opps Something went wrong', result,
                                   colorText: Colors.white,
                                   backgroundColor: Colors.red);

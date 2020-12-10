@@ -13,7 +13,7 @@ class DatabaseServices {
         'url': imageUrl,
       });
       print(result.id);
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;
@@ -25,7 +25,7 @@ class DatabaseServices {
       await _firebaseFirestore.collection('users').doc(uid).update({
         'favorites': FieldValue.arrayUnion([postID]),
       });
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;
@@ -37,7 +37,7 @@ class DatabaseServices {
       await _firebaseFirestore.collection('users').doc(uid).update({
         'favorites': FieldValue.arrayRemove([postID]),
       });
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;
@@ -47,7 +47,7 @@ class DatabaseServices {
   static Future<String> removePost(String postID) async {
     try {
       await _firebaseFirestore.collection('posts').doc(postID).delete();
-      return 'berhasil';
+      return 'success';
     } catch (error) {
       print(error);
       return error.message;
