@@ -8,7 +8,7 @@ import 'package:ngabolang/services/firebase_auth.dart';
 import 'package:ngabolang/services/firebase_storage.dart';
 import 'package:ngabolang/widgets/dark_button.dart';
 
-import '../../widgets/user_image_picker.dart';
+import 'local_widget/user_image_picker.dart';
 
 class UserPhoto extends StatefulWidget {
   static final String id = 'user_photo';

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'dart:io';
 import 'package:ngabolang/widgets/blue_button.dart';
 import 'package:ngabolang/widgets/post_field.dart';
-import 'package:ngabolang/widgets/user_image_picker.dart';
+import 'local_widget/profile_image_picker.dart';
 import 'package:ngabolang/services/firebase_storage.dart';
 import 'package:ngabolang/services/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -47,7 +47,7 @@ class _EditProfileState extends State<EditProfile> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              UserImagePicker(
+              ProfileImagePicker(
                 screenSize: screenSize,
                 imageUrl: imageUrl == _user.photoURL ? null : imageUrl,
                 buttonTap: () async {
