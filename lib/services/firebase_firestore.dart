@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
 
 class DatabaseServices {
   static FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  static Future<String> addPost(Timestamp date, String location, String uid, String imageUrl) async {
+  static Future<String> addPost(
+      Timestamp date, String location, String uid, String imageUrl) async {
     try {
       var result = await _firebaseFirestore.collection('posts').add({
         'date': date,
