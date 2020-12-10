@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ngabolang/screens/profile/edit_profile.dart';
-import 'package:ngabolang/screens/profile/local_widget/edit_button.dart';
 import 'package:ngabolang/screens/profile/local_widget/profile_appbar.dart';
-import 'package:ngabolang/screens/profile/local_widget/stats_row.dart';
+import 'package:ngabolang/screens/profile/local_widget/user_postlist.dart';
 import 'package:ngabolang/services/firebase_auth.dart';
 import 'package:ngabolang/widgets/bottom_nav_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ngabolang/services/masonry_grid_post.dart';
 import 'package:ngabolang/screens/welcome/get_started_screen.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -62,73 +59,13 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       bottomNavigationBar: BottomNavBar(),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('posts')
-            .where('uid', isEqualTo: uid)
-            .snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundImage: NetworkImage(photoUrl),
-                      ),
-                      SizedBox(
-                        width: 80,
-                      ),
-                      StatsRow(
-                          postsCount: userPostCount,
-                          favoritesCount: userFavoritesCount),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    name,
-                    style: TextStyle(fontSize: 22),
-                  ),
-                  Text(
-                    email,
-                    style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  EditButton(
-                    onButtonTap: () {
-                      Get.toNamed(EditProfile.id);
-                    },
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Flexible(
-                    child: MasonryGridPost(
-                      snapshot: snapshot,
-                      margin: EdgeInsets.all(0),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+      body: UserPostList(
+        uid: uid,
+        photoUrl: photoUrl,
+        userPostCount: userPostCount,
+        userFavoritesCount: userFavoritesCount,
+        name: name,
+        email: email,
       ),
     );
   }
