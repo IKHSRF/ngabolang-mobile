@@ -23,13 +23,21 @@ class _DetailPostState extends State<DetailPost> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: screenSize.height / 20.0),
+          padding: EdgeInsets.symmetric(
+              horizontal: 35.0, vertical: screenSize.height / 20.0),
           child: FutureBuilder(
-            future: FirebaseFirestore.instance.collection('posts').doc(Get.arguments).get(),
+            future: FirebaseFirestore.instance
+                .collection('posts')
+                .doc(Get.arguments)
+                .get(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 //check user exist or not
-                FirebaseFirestore.instance.collection('users').doc(snapshot.data['uid']).get().then(
+                FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(snapshot.data['uid'])
+                    .get()
+                    .then(
                   (DocumentSnapshot documentSnapshot) {
                     if (documentSnapshot.exists) {
                       if (!mounted) return;
