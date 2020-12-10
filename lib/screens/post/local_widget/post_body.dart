@@ -38,8 +38,9 @@ class PostBody extends StatelessWidget {
               borderRadius: BorderRadius.circular(15.0),
               child: CachedNetworkImage(
                 imageUrl: snapshot.data['url'],
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    CircularProgressIndicator(value: downloadProgress.progress),
+                progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(
+                  value: downloadProgress.progress,
+                ),
               ),
             ),
           ),
