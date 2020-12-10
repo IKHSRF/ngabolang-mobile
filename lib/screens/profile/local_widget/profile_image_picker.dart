@@ -39,18 +39,16 @@ class ProfileImagePicker extends StatelessWidget {
                     Icons.person_outline,
                     size: screenSize.width / 3,
                   ),
-            Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                foregroundDecoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.2),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.camera_alt_outlined,
-                  color: Colors.white.withOpacity(0.75),
-                  size: 40,
-                ),
+            Container(
+              alignment: Alignment.center,
+              foregroundDecoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.2),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.camera_alt_outlined,
+                color: Colors.white.withOpacity(0.75),
+                size: 40,
               ),
             ),
           ],
