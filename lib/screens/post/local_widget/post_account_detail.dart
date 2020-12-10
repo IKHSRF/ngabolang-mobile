@@ -78,37 +78,55 @@ class _PostAccountDetailState extends State<PostAccountDetail> {
                   } else {
                     isFavorite = false;
                   }
-                  return IconButton(
-                    icon: Icon(isFavorite
-                        ? Icons.favorite
-                        : Icons.favorite_border_outlined),
-                    iconSize: 25.0,
-                    color: isFavorite ? Colors.red : Colors.black,
-                    onPressed: () async {
-                      if (isFavorite == false) {
-                        var result = await DatabaseServices.addFavorite(
-                            widget.snapshot.data.id,
-                            FirebaseAuth.instance.currentUser.uid);
-                        if (result != 'berhasil') {
-                          Get.snackbar('Opps Something went wrong', result,
-                              colorText: Colors.white,
-                              backgroundColor: Colors.red);
-                        } else {
-                          isFavorite = true;
-                        }
-                      } else {
-                        var result = await DatabaseServices.removeFavorite(
-                            widget.snapshot.data.id,
-                            FirebaseAuth.instance.currentUser.uid);
-                        if (result != 'berhasil') {
-                          Get.snackbar('Opps Something went wrong', result,
-                              colorText: Colors.white,
-                              backgroundColor: Colors.red);
-                        } else {
-                          isFavorite = false;
-                        }
-                      }
-                    },
+                  return Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () async {
+                          var result = await DatabaseServices.removePost(
+                              widget.snapshot.data.id);
+                          if (result != 'berhasil') {
+                            Get.snackbar('Opps Something went wrong', result,
+                                colorText: Colors.white,
+                                backgroundColor: Colors.red);
+                          } else {
+                            Get.back();
+                          }
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border_outlined),
+                        iconSize: 25.0,
+                        color: isFavorite ? Colors.red : Colors.black,
+                        onPressed: () async {
+                          if (isFavorite == false) {
+                            var result = await DatabaseServices.addFavorite(
+                                widget.snapshot.data.id,
+                                FirebaseAuth.instance.currentUser.uid);
+                            if (result != 'berhasil') {
+                              Get.snackbar('Opps Something went wrong', result,
+                                  colorText: Colors.white,
+                                  backgroundColor: Colors.red);
+                            } else {
+                              isFavorite = true;
+                            }
+                          } else {
+                            var result = await DatabaseServices.removeFavorite(
+                                widget.snapshot.data.id,
+                                FirebaseAuth.instance.currentUser.uid);
+                            if (result != 'berhasil') {
+                              Get.snackbar('Opps Something went wrong', result,
+                                  colorText: Colors.white,
+                                  backgroundColor: Colors.red);
+                            } else {
+                              isFavorite = false;
+                            }
+                          }
+                        },
+                      ),
+                    ],
                   );
                 }
                 return CircularProgressIndicator();
