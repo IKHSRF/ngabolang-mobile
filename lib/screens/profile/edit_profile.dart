@@ -49,7 +49,7 @@ class _EditProfileState extends State<EditProfile> {
             children: [
               ProfileImagePicker(
                 screenSize: screenSize,
-                imageUrl: imageUrl == _user.photoURL ? null : imageUrl,
+                imageUrl: imageUrl,
                 buttonTap: () async {
                   File file = await StorageServices.getImage();
                   imageUrl = await StorageServices.uploadPhoto(

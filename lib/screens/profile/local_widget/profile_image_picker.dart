@@ -23,20 +23,38 @@ class ProfileImagePicker extends StatelessWidget {
           color: Color(0xFFD8D8D8),
           shape: BoxShape.circle,
         ),
-        child: (imageUrl != null)
-            ? Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(imageUrl),
+        child: Stack(
+          children: [
+            (imageUrl != null)
+                ? Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(imageUrl),
+                      ),
+                    ),
+                  )
+                : Icon(
+                    Icons.person_outline,
+                    size: screenSize.width / 3,
                   ),
+            Expanded(
+              child: Container(
+                alignment: Alignment.center,
+                foregroundDecoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.2),
+                  shape: BoxShape.circle,
                 ),
-              )
-            : Icon(
-                Icons.person_outline,
-                size: screenSize.width / 3,
+                child: Icon(
+                  Icons.camera_alt_outlined,
+                  color: Colors.white.withOpacity(0.75),
+                  size: 40,
+                ),
               ),
+            ),
+          ],
+        ),
       ),
     );
   }
