@@ -49,9 +49,9 @@ class _AddPostState extends State<AddPost> {
                   locationController: locationController,
                   buttonPostPress: () async {
                     if (locationController.text.trim().isEmpty) {
-                      Get.snackbar('Oops Something when wrong', 'location Cannot Empty', colorText: Colors.white, backgroundColor: Colors.red);
+                      Get.snackbar('Oops Something went wrong', 'location Cannot Empty', colorText: Colors.white, backgroundColor: Colors.red);
                     } else if (imagePath.isNull) {
-                      Get.snackbar('Oops Something when wrong', 'Image Cannot Empty', colorText: Colors.white, backgroundColor: Colors.red);
+                      Get.snackbar('Oops Something went wrong', 'Image Cannot Empty', colorText: Colors.white, backgroundColor: Colors.red);
                     } else {
                       //upload image to firestore
                       var result = await DatabaseServices.addPost(
@@ -61,7 +61,7 @@ class _AddPostState extends State<AddPost> {
                         imagePath,
                       );
                       if (result != 'berhasil') {
-                        Get.snackbar('Opps Something when wrong', result, colorText: Colors.white, backgroundColor: Colors.red);
+                        Get.snackbar('Opps Something went wrong', result, colorText: Colors.white, backgroundColor: Colors.red);
                       } else {
                         setState(() {
                           isLoading = true;
