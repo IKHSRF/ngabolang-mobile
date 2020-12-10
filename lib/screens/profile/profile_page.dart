@@ -4,6 +4,7 @@ import 'package:ngabolang/screens/profile/edit_profile.dart';
 import 'package:ngabolang/screens/profile/local_widget/edit_button.dart';
 import 'package:ngabolang/screens/profile/local_widget/profile_appbar.dart';
 import 'package:ngabolang/screens/profile/local_widget/stats_row.dart';
+import 'package:ngabolang/services/firebase_auth.dart';
 import 'package:ngabolang/widgets/bottom_nav_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -55,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
         preferredSize: Size.fromHeight(56),
         child: ProfileAppBar(
           onIconTap: () async {
-            await FirebaseAuth.instance.signOut();
+            await AuthServices.signOut();
             Get.offAllNamed(GetStartedPage.id);
           },
         ),
