@@ -16,7 +16,6 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
   User _user = FirebaseAuth.instance.currentUser;
   String imageUrl;
   String name;
@@ -30,11 +29,9 @@ class _EditProfileState extends State<EditProfile> {
 
   void getUserData() {
     name = _user.displayName;
-    email = _user.email;
     imageUrl = _user.photoURL;
 
     nameController.text = name;
-    emailController.text = email;
   }
 
   @override
@@ -57,11 +54,6 @@ class _EditProfileState extends State<EditProfile> {
               },
             ),
             PostField(
-              controller: emailController,
-              hintText: 'Email',
-              margin: screenSize.height * 0.01,
-            ),
-            PostField(
               controller: nameController,
               hintText: 'Full Name',
               margin: 0,
@@ -73,9 +65,7 @@ class _EditProfileState extends State<EditProfile> {
               screenSize: screenSize,
               buttonTap: () async {
                 var result = await AuthServices.editUserProfile(
-                    nameController.text.trim(),
-                    emailController.text.trim(),
-                    imageUrl);
+                    nameController.text.trim(), imageUrl);
 
                 if (result != 'berhasil') {
                   Get.snackbar('Opps Something went wrong', result,

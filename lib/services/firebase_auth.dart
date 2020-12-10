@@ -81,18 +81,15 @@ class AuthServices {
     }
   }
 
-  static Future<String> editUserProfile(
-      String name, String email, String photoUrl) async {
+  static Future<String> editUserProfile(String name, String photoUrl) async {
     String uid = _firebaseAuth.currentUser.uid;
     try {
       if (photoUrl == null || photoUrl == "") {
         await _firebaseAuth.currentUser
             .updateProfile(displayName: name, photoURL: defaultPhoto);
-        await _firebaseAuth.currentUser.updateEmail(email);
         await _firebaseFirestore.collection('users').doc(uid).update(
           {
             'displayName': name,
-            'email': email,
             'photoURL': defaultPhoto,
           },
         );
@@ -100,11 +97,9 @@ class AuthServices {
       } else {
         await _firebaseAuth.currentUser
             .updateProfile(displayName: name, photoURL: photoUrl);
-        await _firebaseAuth.currentUser.updateEmail(email);
         await _firebaseFirestore.collection('users').doc(uid).update(
           {
             'displayName': name,
-            'email': email,
             'photoURL': photoUrl,
           },
         );
