@@ -69,8 +69,11 @@ class _DetailPostState extends State<DetailPost> {
                 );
               }
               //if data in snapshot not exists
-              return Center(
-                child: CircularProgressIndicator(),
+              return Container(
+                height: screenSize.height,
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
               );
             },
           ),
