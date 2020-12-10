@@ -7,7 +7,7 @@ class AuthServices {
   static GoogleSignIn _googleSignIn = GoogleSignIn();
   static FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   static String defaultPhoto =
-      'https://firebasestorage.googleapis.com/v0/b/ngabolang.appspot.com/o/user%2FdefaultProfile%2FphotoDefault.png?alt=media&token=4aa176b4-be69-41c8-8ba0-55b3292ac0b4';
+      'https://firebasestorage.googleapis.com/v0/b/ngabolang.appspot.com/o/users%2FphotoDefault.png?alt=media&token=b630f3b9-c537-45c5-9611-42e2d6d93aa5';
 
   static Future<void> signOut() async {
     await _firebaseAuth.signOut();
