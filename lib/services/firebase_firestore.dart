@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseServices {
   static FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  static String defaultThumbUrl =
+      'https://firebasestorage.googleapis.com/v0/b/ngabolang.appspot.com/o/posts%2Floading-indicator-view.jpg?alt=media&token=a6bdb1c8-6988-4fb4-b3c0-1029e823169f';
 
   static Future<String> addPost(
       Timestamp date, String location, String uid, String imageUrl) async {
@@ -9,6 +11,7 @@ class DatabaseServices {
       var result = await _firebaseFirestore.collection('posts').add({
         'date': date,
         'location': location,
+        'thumbUrl': defaultThumbUrl,
         'uid': uid,
         'url': imageUrl,
       });
