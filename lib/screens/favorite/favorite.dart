@@ -51,6 +51,9 @@ class _FavoritePageState extends State<FavoritePage> {
                                     child: CircularProgressIndicator(),
                                   );
                                 }
+                                if (!snapshot.data.exists) {
+                                  return Container();
+                                }
                                 return GestureDetector(
                                   onTap: () => Get.toNamed(
                                     DetailPost.id,
