@@ -44,48 +44,63 @@ class _EditProfileState extends State<EditProfile> {
         inAsyncCall: showLoading,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 36.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
             children: [
-              ProfileImagePicker(
-                screenSize: screenSize,
-                imageUrl: imageUrl,
-                buttonTap: () async {
-                  File file = await StorageServices.getImage();
-                  imageUrl = await StorageServices.uploadPhoto(
-                      file, FirebaseAuth.instance.currentUser.uid);
-                  setState(() {});
-                },
+              Padding(
+                padding: const EdgeInsets.only(top: 48.0),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    onPressed: () => Get.back(),
+                    icon: Icon(Icons.arrow_back_ios_outlined),
+                  ),
+                ),
               ),
-              PostField(
-                controller: nameController,
-                hintText: 'Full Name',
-                margin: 0,
-              ),
-              SizedBox(
-                height: 36,
-              ),
-              BlueButton(
-                screenSize: screenSize,
-                buttonTap: () async {
-                  setState(() {
-                    showLoading = !showLoading;
-                  });
-                  var result = await AuthServices.editUserProfile(
-                      nameController.text.trim(), imageUrl);
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ProfileImagePicker(
+                    screenSize: screenSize,
+                    imageUrl: imageUrl,
+                    buttonTap: () async {
+                      File file = await StorageServices.getImage();
+                      imageUrl = await StorageServices.uploadPhoto(
+                          file, FirebaseAuth.instance.currentUser.uid);
+                      setState(() {});
+                    },
+                  ),
+                  PostField(
+                    controller: nameController,
+                    hintText: 'Full Name',
+                    margin: 0,
+                  ),
+                  SizedBox(
+                    height: 36,
+                  ),
+                  BlueButton(
+                    screenSize: screenSize,
+                    buttonTap: () async {
+                      setState(() {
+                        showLoading = !showLoading;
+                      });
+                      var result = await AuthServices.editUserProfile(
+                          nameController.text.trim(), imageUrl);
 
-                  setState(() {
-                    showLoading = !showLoading;
-                  });
+                      setState(() {
+                        showLoading = !showLoading;
+                      });
 
-                  if (result != 'berhasil') {
-                    Get.snackbar('Opps Something went wrong', result,
-                        colorText: Colors.white, backgroundColor: Colors.red);
-                  } else {
-                    Get.back();
-                  }
-                },
-                buttonText: 'Edit',
+                      if (result != 'berhasil') {
+                        Get.snackbar('Opps Something went wrong', result,
+                            colorText: Colors.white,
+                            backgroundColor: Colors.red);
+                      } else {
+                        Get.back();
+                      }
+                    },
+                    buttonText: 'Edit',
+                  ),
+                ],
               ),
             ],
           ),
