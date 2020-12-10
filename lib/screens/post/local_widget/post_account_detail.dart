@@ -43,6 +43,7 @@ class _PostAccountDetailState extends State<PostAccountDetail> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         image: NetworkImage(widget.userPhotoURL),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
