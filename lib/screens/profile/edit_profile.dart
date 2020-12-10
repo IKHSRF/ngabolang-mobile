@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ngabolang/services/field_validator.dart';
 import 'dart:io';
 import 'package:ngabolang/widgets/blue_button.dart';
 import 'package:ngabolang/widgets/post_field.dart';
@@ -22,6 +23,7 @@ class _EditProfileState extends State<EditProfile> {
   String imageUrl;
   String name;
   String email;
+  String nameValidate;
 
   @override
   void initState() {
@@ -39,6 +41,8 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
+    nameValidate = Validator.nameValidate(nameController.text.trim());
+
     return Scaffold(
       body: ModalProgressHUD(
         inAsyncCall: showLoading,
@@ -83,19 +87,29 @@ class _EditProfileState extends State<EditProfile> {
                       setState(() {
                         showLoading = !showLoading;
                       });
-                      var result = await AuthServices.editUserProfile(
-                          nameController.text.trim(), imageUrl);
 
-                      setState(() {
-                        showLoading = !showLoading;
-                      });
-
-                      if (result != 'success') {
-                        Get.snackbar('Opps Something went wrong', result,
-                            colorText: Colors.white,
-                            backgroundColor: Colors.red);
+                      if (nameValidate != null) {
+                        setState(() {
+                          showLoading = !showLoading;
+                        });
+                        Get.snackbar('Enter your name correctly', nameValidate,
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white);
                       } else {
-                        Get.back();
+                        var result = await AuthServices.editUserProfile(
+                            nameController.text.trim(), imageUrl);
+
+                        setState(() {
+                          showLoading = !showLoading;
+                        });
+
+                        if (result != 'success') {
+                          Get.snackbar('Opps Something went wrong', result,
+                              colorText: Colors.white,
+                              backgroundColor: Colors.red);
+                        } else {
+                          Get.back();
+                        }
                       }
                     },
                     buttonText: 'Edit',
