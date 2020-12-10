@@ -20,14 +20,10 @@ class _ProfilePageState extends State<ProfilePage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   String uid;
 
-  void getUserData() async {
-    uid = _user.uid;
-  }
-
   @override
   void initState() {
     super.initState();
-    getUserData();
+    uid = _user.uid;
   }
 
   @override
