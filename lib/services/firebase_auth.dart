@@ -6,15 +6,18 @@ class AuthServices {
   static FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   static GoogleSignIn _googleSignIn = GoogleSignIn();
   static FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
-  static String defaultPhoto = 'https://firebasestorage.googleapis.com/v0/b/ngabolang.appspot.com/o/user%2FdefaultProfile%2FphotoDefault.png?alt=media&token=4aa176b4-be69-41c8-8ba0-55b3292ac0b4';
+  static String defaultPhoto =
+      'https://firebasestorage.googleapis.com/v0/b/ngabolang.appspot.com/o/user%2FdefaultProfile%2FphotoDefault.png?alt=media&token=4aa176b4-be69-41c8-8ba0-55b3292ac0b4';
 
   static Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
 
-  static Future<String> signUpWithEmailandPassword(String email, String password, String name) async {
+  static Future<String> signUpWithEmailandPassword(
+      String email, String password, String name) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
       await _firebaseAuth.currentUser.updateProfile(displayName: name);
       String uid = _firebaseAuth.currentUser.uid;
       await _firebaseFirestore.collection('users').doc(uid).update(
@@ -50,9 +53,11 @@ class AuthServices {
     }
   }
 
-  static Future<String> loginWithEmailandPassword(String email, String password) async {
+  static Future<String> loginWithEmailandPassword(
+      String email, String password) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
       return 'berhasil';
     } catch (error) {
       print(error);
@@ -70,6 +75,36 @@ class AuthServices {
       );
       await _firebaseAuth.signInWithCredential(credential);
       return 'berhasil';
+    } catch (error) {
+      print(error);
+      return error.message;
+    }
+  }
+
+  static Future<String> editUserProfile(String name, String photoUrl) async {
+    String uid = _firebaseAuth.currentUser.uid;
+    try {
+      if (photoUrl == null || photoUrl == "") {
+        await _firebaseAuth.currentUser
+            .updateProfile(displayName: name, photoURL: defaultPhoto);
+        await _firebaseFirestore.collection('users').doc(uid).update(
+          {
+            'displayName': name,
+            'photoURL': defaultPhoto,
+          },
+        );
+        return 'berhasil';
+      } else {
+        await _firebaseAuth.currentUser
+            .updateProfile(displayName: name, photoURL: photoUrl);
+        await _firebaseFirestore.collection('users').doc(uid).update(
+          {
+            'displayName': name,
+            'photoURL': photoUrl,
+          },
+        );
+        return 'berhasil';
+      }
     } catch (error) {
       print(error);
       return error.message;

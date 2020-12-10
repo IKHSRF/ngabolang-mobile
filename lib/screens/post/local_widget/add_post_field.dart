@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngabolang/widgets/blue_button.dart';
 
-import 'post_field.dart';
+import '../../../widgets/post_field.dart';
 
 class AddPostField extends StatelessWidget {
   const AddPostField({
@@ -28,7 +28,7 @@ class AddPostField extends StatelessWidget {
           PostField(
             controller: locationController,
             hintText: 'Location',
-            screenSize: screenSize,
+            margin: screenSize.height * 0.03,
           ),
           SizedBox(height: screenSize.height * 0.08),
           BlueButton(

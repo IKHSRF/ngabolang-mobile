@@ -5,17 +5,17 @@ class PostField extends StatelessWidget {
     Key key,
     @required this.controller,
     @required this.hintText,
-    @required this.screenSize,
+    @required this.margin,
   }) : super(key: key);
 
   final TextEditingController controller;
   final String hintText;
-  final Size screenSize;
+  final double margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: screenSize.height * 0.03),
+      margin: EdgeInsets.symmetric(vertical: margin),
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
